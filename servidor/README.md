@@ -31,7 +31,7 @@ Las instrucciones siguientes permiten entender o repetir la configuración. No e
 
 En el `config.js` de la raíz del portafolio, sustituir la cadena vacía de `window.CONTACTO_URL` por la dirección real del endpoint. Subir el cambio a GitHub y esperar la publicación de Pages.
 
-La URL de la API es pública; la cadena de MongoDB debe permanecer solo en Vercel. Cuando hay URL, el botón pasa a decir **Enviar mensaje**. No realiza un envío de email: guarda el contacto para consultarlo en Atlas.
+La URL de la API es pública; la cadena de MongoDB debe permanecer solo en Vercel. El botón **Enviar mensaje** guarda el contacto y después solicita el correo a Web3Forms desde el navegador. La clave pública de ese formulario se configura como `window.CLAVE_FORMULARIO` en `config.js`.
 
 ## 4. Verificar el guardado real
 
@@ -51,11 +51,11 @@ No hay bandeja pública ni panel de administración. Para responder, consultar e
 
 ## Avisos al correo personal
 
-`correo.js` solicita un aviso a FormSubmit con el nombre, correo y mensaje del visitante. El destino está en `CONTACT_EMAIL`, configurado como `crafterbm222@gmail.com`; el visitante no puede cambiarlo. No se requiere añadir una contraseña de Gmail al servidor.
+El envío del aviso se realiza desde `script.js`, en el navegador, después del guardado en MongoDB. Se usa Web3Forms con una clave pública en `config.js`, asociada al formulario **Contacto del portafolio** del usuario `crafterbm222@gmail.com`. La configuración del destinatario se administra en https://app.web3forms.com/.
 
-El propietario debe buscar el primer correo de FormSubmit en su Gmail y pulsar **Activate Form**. Puede localizarlo con `in:anywhere FormSubmit`. Sin activar el destinatario, los avisos quedan pendientes. La activación y la entrega en la bandeja no se consideran comprobadas solo porque el servicio diga que solicitó el correo.
+Se usa la modalidad de navegador de Web3Forms. No se envía desde la función de Vercel porque el uso de servidor requiere un plan diferente. La clave del formulario está diseñada para ser pública; no es una contraseña ni permite leer Gmail o MongoDB.
 
-El campo `avisoCorreo` de MongoDB registra `aceptado` o `pendiente`. Si falla el aviso, se mantiene el contacto y se informa al visitante sin pedir que lo vuelva a enviar. No hay reintento automático de pendientes. Referencia: https://formsubmit.co/
+El campo `avisoCorreo` contiene `gestionado_desde_navegador`. No acredita entrega en la bandeja. Si Web3Forms falla, la página permite reintentar el aviso sin volver a guardar el mismo contacto mientras se mantenga abierta la página. No hay reintento en segundo plano ni de contactos antiguos. Referencia: https://docs.web3forms.com/getting-started/api-reference
 
 ## Probar el código en el computador (opcional)
 

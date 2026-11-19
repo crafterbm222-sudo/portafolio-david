@@ -20,6 +20,7 @@ La página principal está hecha con HTML, CSS y JavaScript. Algunos proyectos m
 | GitHub Pages | Alojar la página del portafolio. |
 | Node.js y Vercel | Ejecutar el código que recibe y procesa los mensajes. |
 | MongoDB Atlas | Guardar los contactos en una base de datos en Internet. |
+| Web3Forms | Enviar el aviso del contacto al Gmail personal del propietario. |
 | Biblioteca oficial mongodb | Conectar el código del servidor con la base de datos. |
 | Playwright y pruebas de Node.js | Revisar tamaños de pantalla, formulario y respuestas del servidor. |
 | Codex | Ayudar a preparar el código, configurar servicios y comprobar resultados. |
@@ -34,9 +35,9 @@ La página principal está hecha con HTML, CSS y JavaScript. Algunos proyectos m
 
 La contraseña de la base está en Vercel como variable privada `MONGODB_URI`. No está en el navegador, el ZIP ni GitHub. La dirección de la API que aparece en `config.js` sí es pública y no es una contraseña.
 
-Después de guardar en MongoDB, el servidor solicita a FormSubmit un aviso para `crafterbm222@gmail.com`. El propietario debe activar ese destinatario pulsando **Activate Form** en el primer correo de FormSubmit. Hasta completar esa confirmación no se puede considerar verificada la recepción de avisos. Los contactos siguen disponibles en Atlas y el enlace de Gmail sigue siendo otra forma de contacto.
+Después de guardar en MongoDB, el navegador envía el aviso a Web3Forms, cuyo formulario está asociado a `crafterbm222@gmail.com`. La clave de `config.js` es pública y representa ese formulario; no es una contraseña de Gmail. El servicio permite usarla en el navegador. El correo del visitante se incluye para poder responderle.
 
-La API devuelve `avisoCorreo` con el valor `aceptado` cuando el servicio acepta el aviso, o `pendiente` si aún no está activado, hay un fallo o se agota la espera. Aceptado no garantiza que un correo haya llegado a la bandeja: también puede aparecer en spam. Esta versión no reenvía automáticamente los avisos pendientes; no se pierden sus contactos en la base de datos.
+Si falla el envío del correo, la página avisa que el contacto sí quedó guardado, conserva los campos y muestra **Reintentar aviso**. Al pulsarlo durante esa misma visita, reintenta el correo sin volver a guardar el mismo contacto. Si se recarga la página, se pierde esa memoria temporal. No hay reintento automático en segundo plano. El campo `avisoCorreo: gestionado_desde_navegador` indica dónde se gestiona el aviso; no acredita su entrega en la bandeja.
 
 ## Dónde leer los mensajes
 

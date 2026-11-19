@@ -1,7 +1,6 @@
 const { createHash } = require('node:crypto');
 const { validarContacto } = require('../validacion');
 const { obtenerBaseDatos } = require('../base-datos');
-const { enviarAviso } = require('../correo');
 
 module.exports = async function contacto(req, res) {
     res.setHeader('Cache-Control', 'no-store');
@@ -64,19 +63,11 @@ module.exports = async function contacto(req, res) {
         const guardado = await db.collection('contactos').insertOne({
             ...resultado.contacto,
             fecha: new Date(),
-            avisoCorreo: 'pendiente'
+            avisoCorreo: 'gestionado_desde_navegador'
         });
         const id = guardado.insertedId.toString();
-        const avisoCorreo = await enviarAviso(resultado.contacto, id);
-        try {
-            await db.collection('contactos').updateOne(
-                { _id: guardado.insertedId },
-                { $set: { avisoCorreo } }
-            );
-        } catch {
-            // El contacto ya está guardado; no pedir al visitante que lo duplique.
-        }
-        return res.status(201).json({ ok: true, id, avisoCorreo });
+        // El navegador enviará el aviso usando la clave pública de Web3Forms.
+        return res.status(201).json({ ok: true, id });
     } catch {
         // No mostramos errores internos que puedan contener datos de conexión.
         return res.status(503).json({ error: 'No se pudo guardar el mensaje. Inténtalo más tarde o usa el correo.' });

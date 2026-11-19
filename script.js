@@ -17,6 +17,31 @@ const formulario = document.getElementById('formulario');
 const respuesta = document.getElementById('respuesta');
 const botonEnviar = formulario.querySelector('button[type="submit"]');
 const urlContacto = window.CONTACTO_URL || '';
+let contactoGuardado = null;
+
+// Web3Forms permite el envío desde el navegador con su clave pública.
+async function enviarAviso(datos, referencia, signal) {
+    if (!window.CLAVE_FORMULARIO) throw new Error('El correo todavía no está configurado.');
+    const peticion = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+            access_key: window.CLAVE_FORMULARIO,
+            from_name: 'Portafolio de David',
+            subject: 'Nuevo mensaje de tu portafolio',
+            name: datos.nombre,
+            email: datos.correo,
+            message: datos.mensaje,
+            referencia,
+            botcheck: false
+        }),
+        signal
+    });
+    const respuestaCorreo = await peticion.json();
+    if (!peticion.ok || respuestaCorreo.success !== true) {
+        throw new Error('No se pudo enviar el aviso al correo.');
+    }
+}
 if (urlContacto) {
     botonEnviar.textContent = 'Enviar mensaje';
     formulario.querySelector('.ayuda').textContent =
@@ -35,38 +60,50 @@ formulario.addEventListener('submit', async function (evento) {
         return;
     }
     if (urlContacto) {
+        const datosFormulario = { nombre, correo, mensaje, sitio: formulario.elements.sitio.value };
+        const firma = JSON.stringify(datosFormulario);
+        let correoEnviado = false;
         botonEnviar.disabled = true;
         botonEnviar.textContent = 'Enviando…';
         formulario.setAttribute('aria-busy', 'true');
         respuesta.dataset.estado = '';
         respuesta.textContent = 'Guardando tu mensaje…';
         const control = new AbortController();
-        const espera = setTimeout(function () { control.abort(); }, 20000);
+        const espera = setTimeout(function () { control.abort(); }, 30000);
         try {
-            const peticion = await fetch(urlContacto, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nombre, correo, mensaje, sitio: formulario.elements.sitio.value }),
-                signal: control.signal
-            });
-            const datos = await peticion.json();
-            if (!peticion.ok || datos.ok !== true) {
-                throw new Error(datos.error || 'No se pudo guardar el mensaje.');
+            // Al reintentar el aviso, evitamos volver a guardar el mismo contacto.
+            if (!contactoGuardado || contactoGuardado.firma !== firma) {
+                const peticion = await fetch(urlContacto, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosFormulario),
+                    signal: control.signal
+                });
+                const datos = await peticion.json();
+                if (!peticion.ok || datos.ok !== true) {
+                    throw new Error(datos.error || 'No se pudo guardar el mensaje.');
+                }
+                contactoGuardado = { firma, id: datos.id };
             }
+            respuesta.textContent = 'Enviando el aviso al correo…';
+            await enviarAviso(datosFormulario, contactoGuardado.id, control.signal);
+            correoEnviado = true;
+            contactoGuardado = null;
             respuesta.dataset.estado = 'correcto';
-            respuesta.textContent = datos.avisoCorreo === 'pendiente'
-                ? 'Tu mensaje quedó guardado. El aviso por correo está pendiente; no necesitas enviarlo otra vez.'
-                : 'Tu mensaje quedó guardado. ¡Gracias por escribirme!';
+            respuesta.textContent = 'Tu mensaje quedó guardado y el aviso por correo fue enviado. ¡Gracias!';
             formulario.reset();
         } catch (error) {
             respuesta.dataset.estado = 'error';
-            respuesta.textContent = error.name === 'AbortError' || error instanceof TypeError
+            respuesta.textContent = contactoGuardado && contactoGuardado.firma === firma
+                ? 'Tu mensaje quedó guardado, pero no pudimos enviar el aviso al correo. Pulsa de nuevo para reintentar el aviso.'
+                : error.name === 'AbortError' || error instanceof TypeError
                 ? 'No pudimos confirmar el envío. Tus datos siguen aquí. Puedes reintentar o usar el enlace de correo.'
                 : error.message;
         } finally {
             clearTimeout(espera);
             botonEnviar.disabled = false;
-            botonEnviar.textContent = 'Enviar mensaje';
+            botonEnviar.textContent = !correoEnviado && contactoGuardado && contactoGuardado.firma === firma
+                ? 'Reintentar aviso' : 'Enviar mensaje';
             formulario.removeAttribute('aria-busy');
         }
         return;

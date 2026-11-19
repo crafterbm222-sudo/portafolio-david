@@ -31,11 +31,11 @@ El formulario envía nombre, correo, mensaje y fecha a MongoDB Atlas mediante un
 función de Node.js publicada en Vercel. El navegador solo conoce la URL pública de
 la API. La contraseña está guardada como secreto del servidor, fuera de GitHub.
 Solo muestra confirmación cuando el guardado se completa. Si hay un error,
-conserva los campos para reintentar. También solicita un aviso a Gmail mediante FormSubmit; requiere activar el destinatario. Los avisos pendientes no se reenvían automáticamente.
+conserva los campos para reintentar. Después del guardado, el navegador envía un aviso a Gmail con Web3Forms. Si falla, permite reintentar el aviso sin duplicar el contacto durante esa misma visita.
 Para leer los mensajes: Atlas > Portafolio David > portafolio-david >
 Browse Collections > portafolio > contactos.
 El enlace de correo de la página sigue disponible como alternativa.
-El destino es crafterbm222@gmail.com. El servicio de correo debe activarse desde el enlace de FormSubmit recibido en esa cuenta. La carpeta servidor contiene la guía.
+El destino es crafterbm222@gmail.com. La clave pública del formulario de Web3Forms está en config.js. La carpeta servidor contiene la guía.
 Se verificó un envío real y su lectura en MongoDB Atlas.
 
 ARCHIVOS
