@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portafolio académico de David Andrés Bustamante Mesa. Proyectos y aprendizajes en desarrollo web.">
+  <title>David Bustamante · Desarrollo web</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <div class="contenedor navegacion">
+      <a class="marca" href="#inicio"><span class="monograma">DB.</span><span>David Bustamante</span></a>
+      <button id="boton-menu" class="menu" aria-expanded="false" aria-controls="enlaces">Menú</button>
+      <nav id="enlaces" aria-label="Navegación principal">
+        <a href="#sobre-mi">Sobre mí</a><a href="#habilidades">Habilidades</a><a href="#proyectos">Proyectos</a><a href="#contacto" class="enlace-contacto">Hablemos</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <!-- Se mantiene el orden del wireframe: inicio, sobre mí, habilidades, proyectos y contacto. -->
+    <section id="inicio" class="hero">
+      <div class="contenedor hero-contenido">
+        <div>
+          <p class="etiqueta">PORTAFOLIO ACADÉMICO · DESARROLLO WEB</p>
+          <h1>David Andrés<br>Bustamante Mesa<span class="punto">.</span></h1>
+          <p class="rol">Estudiante, curioso y siempre aprendiendo.</p>
+          <p class="introduccion">Transformo lo que aprendo en páginas que se pueden explorar. Estos son mis primeros pasos con HTML, CSS, JavaScript y React.</p>
+          <div class="acciones"><a href="#proyectos" class="boton">Explorar proyectos</a><a href="#contacto" class="boton secundario">Contactar conmigo</a></div>
+          <p class="pie-hero">Ideas sencillas. Código claro. Aprendizaje constante.</p>
+        </div>
+        <div class="editor" aria-label="Resumen de mi perfil como estudiante">
+          <div class="barra-editor"><span>mi-perfil.js</span><span>JavaScript</span></div>
+          <div class="codigo"><p><span class="violeta">const</span> david = {</p><p>&nbsp; rol: <span class="verde">"Estudiante"</span>,</p><p>&nbsp; enfoque: <span class="verde">"Desarrollo web"</span>,</p><p>&nbsp; herramientas: [</p><p>&nbsp;&nbsp; <span class="verde">"HTML", "CSS",</span></p><p>&nbsp;&nbsp; <span class="verde">"JavaScript", "React"</span></p><p>&nbsp; ],</p><p>&nbsp; aprendiendo: <span class="naranja">true</span></p><p>};</p></div>
+          <div class="estado-editor">Un proyecto a la vez.</div>
+        </div>
+      </div>
+    </section>
+    <section id="sobre-mi" class="seccion">
+      <div class="contenedor sobre-mi">
+        <!-- Las iniciales representan mi perfil; no se utiliza una fotografía ajena. -->
+        <div class="perfil"><span class="iniciales">DB</span><div><strong>David Bustamante</strong><p>Estudiante de desarrollo web</p></div><span class="perfil-nota">CREAR · PROBAR · APRENDER</span></div>
+        <div><p class="etiqueta">SOBRE MÍ</p><h2>Aprender haciendo,<br>mejorar en cada intento.</h2><p>Soy David, estudiante de desarrollo web. Este portafolio reúne los trabajos que he realizado durante el curso y las herramientas que estoy aprendiendo a utilizar.</p><p>Me interesa entender cómo funcionan las interfaces, escribir código más organizado y construir páginas que sean cómodas de usar tanto en computador como en celular.</p><p class="objetivo">Mi objetivo es sencillo: practicar, resolver problemas y seguir creciendo.</p></div>
+      </div>
+    </section>
+    <section id="habilidades" class="seccion suave">
+      <div class="contenedor"><p class="etiqueta">MIS HERRAMIENTAS</p><h2>Lo que estoy aprendiendo.</h2><p class="subtitulo">Cada tecnología tiene un lugar en mis proyectos.</p>
+        <div class="habilidades">
+          <article><span class="icono">&lt;/&gt;</span><h3>HTML</h3><p>Estructura semántica, secciones y formularios.</p></article>
+          <article><span class="icono">{ }</span><h3>CSS</h3><p>Estilos, distribución y adaptación a pantallas.</p></article>
+          <article><span class="icono">JS</span><h3>JavaScript</h3><p>Eventos, DOM y almacenamiento en el navegador.</p></article>
+          <article><span class="icono">R</span><h3>React</h3><p>Componentes, estado, hooks y consumo de API.</p></article>
+          <article><span class="icono">F</span><h3>Figma</h3><p>Wireframes y planificación visual de una página.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="proyectos" class="seccion">
+      <div class="contenedor"><p class="etiqueta">DEL EJERCICIO A LA PANTALLA</p><div class="titulo-proyectos"><div><h2>Mis proyectos.</h2><p class="subtitulo">Trabajos del curso, con sus aprendizajes y resultados.</p></div><a class="enlace-texto" href="https://www.figma.com/design/tu6biTJQiJgsIMtqQpnyrU" target="_blank" rel="noopener">Ver el wireframe en Figma</a></div>
+        <div class="proyectos">
+          <article class="tarjeta-proyecto"><a class="vista-proyecto" href="proyectos/facebook/index.html" target="_blank" rel="noopener" aria-label="Abrir la maqueta de Facebook"><img src="assets/facebook.png" alt="Captura real de la maqueta de Facebook" loading="lazy"></a><div class="detalle"><p class="tags">HTML · CSS</p><h3>Una interfaz familiar</h3><p>Maquetación inspirada en Facebook, con navegación, publicaciones y columnas de contenido.</p><p class="aprendizaje"><strong>Aprendí:</strong> distribución de elementos y estilos de una interfaz.</p><a class="boton" href="proyectos/facebook/index.html" target="_blank" rel="noopener">Ver Facebook</a></div></article>
+          <article class="tarjeta-proyecto"><a class="vista-proyecto" href="proyectos/todo/index.html" target="_blank" rel="noopener" aria-label="Abrir ToDoList"><img src="assets/todo.png" alt="Captura real de ToDoList con tareas pendientes y completadas" loading="lazy"></a><div class="detalle"><p class="tags">HTML · CSS · JAVASCRIPT</p><h3>Un día más organizado</h3><p>Lista de tareas con registro de usuarios, filtros y datos guardados por cuenta en el navegador.</p><p class="aprendizaje"><strong>Aprendí:</strong> eventos, manejo del DOM y Web Storage.</p><a class="boton" href="proyectos/todo/index.html" target="_blank" rel="noopener">Probar ToDoList</a></div></article>
+          <article class="tarjeta-proyecto"><a class="vista-proyecto" href="proyectos/catalogo/index.html" target="_blank" rel="noopener" aria-label="Abrir catálogo interactivo"><img src="assets/catalogo.png" alt="Captura real del catálogo de productos con búsqueda y categorías" loading="lazy"></a><div class="detalle"><p class="tags">REACT · VITE · API PÚBLICA</p><h3>Explorar y descubrir</h3><p>Catálogo con búsqueda, categorías y favoritos. Incluye como ejercicio adicional un juego para medir la reacción.</p><p class="aprendizaje"><strong>Aprendí:</strong> componentes, hooks, peticiones y persistencia.</p><div class="acciones"><a class="boton" href="proyectos/catalogo/index.html" target="_blank" rel="noopener">Ver catálogo</a><a class="boton secundario" href="proyectos/juego/index.html" target="_blank" rel="noopener">Jugar</a></div></div></article>
+          <article class="tarjeta-proyecto"><a class="vista-proyecto" href="proyectos/buscador/index.html" target="_blank" rel="noopener" aria-label="Abrir buscador de personajes"><img src="assets/buscador.png" alt="Captura real del buscador de personajes de Rick and Morty" loading="lazy"></a><div class="detalle"><p class="tags">JAVASCRIPT · API PÚBLICA</p><h3>Buscador de personajes</h3><p>Busca personajes de Rick and Morty por nombre o ID, consulta sus datos y explora los resultados por páginas.</p><p class="aprendizaje"><strong>Aprendí:</strong> peticiones con fetch, manejo de errores y presentación dinámica de datos.</p><a class="boton" href="proyectos/buscador/index.html" target="_blank" rel="noopener">Buscar personajes</a></div></article>
+        </div>
+      </div>
+    </section>
+    <section id="contacto" class="seccion contacto">
+      <div class="contenedor contacto-contenido"><div><p class="etiqueta">SIGAMOS EN CONTACTO</p><h2>Una conversación puede<br>ser el próximo paso.</h2><p>Puedes escribirme sobre mis proyectos o mi proceso de aprendizaje.</p><a class="correo" href="mailto:david.bustamante251@tau.usbmed.edu.co">david.bustamante251@tau.usbmed.edu.co</a></div>
+        <form id="formulario" class="formulario"><h3>Escríbeme</h3><p class="ayuda">Prepararé el mensaje en tu aplicación de correo para que lo revises y lo envíes.</p><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" autocomplete="name" required maxlength="80" placeholder="¿Cómo te llamas?"><label for="email">Tu correo</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="150" placeholder="nombre@correo.com"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" required maxlength="2000" rows="4" placeholder="Cuéntame…"></textarea><button class="boton" type="submit">Preparar correo</button><p id="respuesta" role="status" aria-live="polite"></p><noscript><p>También puedes usar el enlace de correo que aparece en esta sección.</p></noscript></form>
+      </div>
+    </section>
+  </main>
+  <footer><div class="contenedor pie"><a class="marca" href="#inicio">DB. / David Bustamante</a><p>© 2026 · Aprendiendo y construyendo para la web.</p><a href="#inicio">Volver al inicio</a></div></footer>
+</body>
+</html>
+

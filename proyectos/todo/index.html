@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación sencilla para organizar tareas pendientes.">
+    <title>Mi lista de tareas</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Cpath d='M18 20h6v6h-6zm12 1h18v4H30zM18 30h6v6h-6zm12 1h18v4H30zM18 40h6v6h-6zm12 1h18v4H30z' fill='white'/%3E%3C/svg%3E">
+
+    <!-- Librería 1: Font Awesome para mostrar iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Librería 2: Animate.css para animar las tareas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de inicio de sesión -->
+    <main id="pantalla-login" class="login-contenedor">
+        <section class="panel-login animate__animated animate__fadeIn" aria-labelledby="titulo-login">
+            <div class="icono-login" aria-hidden="true">
+                <i class="fa-solid fa-user-lock"></i>
+            </div>
+            <p class="etiqueta">ACCESO PERSONAL</p>
+            <h1 id="titulo-login">Iniciar sesión</h1>
+            <p class="texto-login">Ingresa para consultar tu lista de tareas.</p>
+
+            <form id="formulario-login">
+                <label for="usuario">Usuario</label>
+                <div class="campo-login">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    <input type="text" id="usuario" placeholder="Escribe tu usuario" autocomplete="username" maxlength="30" aria-describedby="ayuda-acceso">
+                </div>
+
+                <label for="contrasena">Contraseña</label>
+                <div class="campo-login">
+                    <i class="fa-solid fa-key" aria-hidden="true"></i>
+                    <input type="password" id="contrasena" placeholder="Escribe tu contraseña" autocomplete="current-password" maxlength="80">
+                </div>
+
+                <button type="submit" id="boton-ingresar">
+                    <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+                    <span id="texto-ingresar">Ingresar</span>
+                </button>
+                <p id="mensaje-login" class="mensaje-error mensaje-login" role="alert"></p>
+            </form>
+
+            <p id="ayuda-acceso" class="ayuda-acceso">¿Es tu primera visita? Crea tu cuenta para guardar tus tareas.</p>
+            <button type="button" id="boton-cambiar-modo">Crear una cuenta</button>
+        </section>
+    </main>
+
+    <!-- Aplicación: se muestra después de iniciar sesión -->
+    <main id="aplicacion" class="contenedor oculto">
+        <header class="encabezado">
+            <div class="icono-principal" aria-hidden="true">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+                <p class="etiqueta">ORGANIZADOR PERSONAL</p>
+                <h1>Mi lista de tareas</h1>
+                <p class="subtitulo">Anota lo que debes hacer y marca tus avances.</p>
+            </div>
+        </header>
+
+        <div class="barra-sesion">
+            <p><i class="fa-solid fa-circle-user" aria-hidden="true"></i> Hola, <strong id="nombre-usuario"></strong></p>
+            <button type="button" id="boton-salir">
+                <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                Cerrar sesión
+            </button>
+        </div>
+
+        <section class="panel" aria-labelledby="titulo-formulario">
+            <h2 id="titulo-formulario" class="solo-lectores">Agregar una tarea</h2>
+
+            <form id="formulario-tarea" class="formulario-tarea">
+                <label for="entrada-tarea">Nueva tarea</label>
+                <div class="fila-entrada">
+                    <input
+                        type="text"
+                        id="entrada-tarea"
+                        placeholder="Ejemplo: Terminar el ejercicio de JavaScript"
+                        maxlength="80"
+                        autocomplete="off"
+                    >
+                    <button type="submit" id="boton-agregar">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        Agregar
+                    </button>
+                </div>
+                <div class="ayuda-entrada">
+                    <p id="mensaje-error" class="mensaje-error" role="alert"></p>
+                    <span id="contador-caracteres">0/80</span>
+                </div>
+            </form>
+
+            <div class="panel-filtros">
+                <label for="filtro-tareas">Mostrar tareas</label>
+                <select id="filtro-tareas">
+                    <option value="todas">Todas</option>
+                    <option value="pendientes">Pendientes</option>
+                    <option value="completadas">Completadas</option>
+                </select>
+                <p id="mensaje-accion" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="resumen" aria-live="polite">
+                <p><strong id="cantidad-pendientes">0</strong> pendientes</p>
+                <p><strong id="cantidad-completadas">0</strong> completadas</p>
+            </div>
+
+            <section class="seccion-lista" aria-labelledby="titulo-lista">
+                <div class="cabecera-lista">
+                    <h2 id="titulo-lista">Mis tareas</h2>
+                    <span id="total-tareas">0 tareas</span>
+                </div>
+
+                <ul id="lista-tareas" aria-live="polite"></ul>
+
+                <div id="estado-vacio" class="estado-vacio animate__animated animate__fadeIn">
+                    <i class="fa-regular fa-clipboard" aria-hidden="true"></i>
+                    <p id="texto-vacio">Todavía no tienes tareas.</p>
+                    <span id="ayuda-vacio">Escribe una arriba para comenzar.</span>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <p id="mensaje-almacenamiento" class="mensaje-almacenamiento oculto" role="alert"></p>
+    <footer>
+        <p>Hecho con HTML, CSS y JavaScript · Proyecto académico</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

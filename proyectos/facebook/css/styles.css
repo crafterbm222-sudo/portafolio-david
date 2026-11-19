@@ -1,0 +1,309 @@
+/* Variables principales de la red social */
+:root {
+    --azul-facebook: #1877f2;
+    --fondo-pagina: #f0f2f5;
+    --fondo-tarjeta: #ffffff;
+    --fondo-boton: #e4e6eb;
+    --texto-principal: #050505;
+    --texto-secundario: #65676b;
+    --borde-suave: #ced0d4;
+    --verde-activo: #31a24c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fondo-pagina);
+    color: var(--texto-principal);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Encabezado: primer uso de Flexbox */
+.navbar {
+    min-height: 60px;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.zona-logo,
+.acciones-usuario {
+    min-width: 220px;
+}
+
+.acciones-usuario {
+    justify-content: flex-end;
+}
+
+.logo {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--azul-facebook);
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.buscador {
+    width: 225px;
+    padding: 9px 13px;
+    border-radius: 25px;
+    background-color: var(--fondo-pagina);
+    color: var(--texto-secundario);
+}
+
+.buscador input {
+    width: 100%;
+    margin-left: 8px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+.navegacion {
+    flex: 1;
+    font-size: 25px;
+}
+
+.navegacion a {
+    min-width: 80px;
+    padding: 7px 18px;
+    border-radius: 8px;
+    color: var(--texto-secundario);
+    text-align: center;
+}
+
+.navegacion a:hover {
+    background-color: var(--fondo-pagina);
+}
+
+.navegacion .activo {
+    border-bottom: 3px solid var(--azul-facebook);
+    border-radius: 0;
+    color: var(--azul-facebook);
+}
+
+.boton-circular {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--fondo-boton);
+    font-size: 18px;
+}
+
+.perfil {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Contenido principal organizado con el grid de Bootstrap */
+.contenido {
+    max-width: 1500px;
+    padding: 25px 24px 10px;
+}
+
+.menu-lateral,
+.contactos {
+    position: sticky;
+    top: 84px;
+}
+
+/* Menú izquierdo: segundo uso de Flexbox */
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.opcion:hover,
+.contacto:hover {
+    background-color: var(--fondo-boton);
+}
+
+.opcion i {
+    width: 40px;
+    color: var(--azul-facebook);
+    font-size: 25px;
+    text-align: center;
+}
+
+.centro {
+    max-width: 650px;
+}
+
+.historia {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.historia img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.historia p {
+    font-size: 14px;
+}
+
+.caja {
+    overflow: hidden;
+    border-radius: 9px;
+    background-color: var(--fondo-tarjeta);
+}
+
+.entrada-publicacion {
+    border: 0;
+    border-radius: 22px;
+    background-color: var(--fondo-pagina);
+    padding: 10px 14px;
+}
+
+.opciones-publicar button,
+.botones-publicacion button {
+    color: var(--texto-secundario);
+    font-weight: bold;
+}
+
+.opciones-publicar,
+.botones-publicacion {
+    flex-wrap: wrap;
+}
+
+.opciones-publicar button:hover,
+.botones-publicacion button:hover {
+    background-color: var(--fondo-pagina);
+}
+
+.foto-publicacion {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.texto-secundario,
+.reacciones,
+.contactos {
+    color: var(--texto-secundario);
+}
+
+.reacciones {
+    font-size: 14px;
+}
+
+/* Contactos: tercer uso de Flexbox */
+.contacto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--texto-principal);
+}
+
+.estado {
+    position: relative;
+}
+
+.estado i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 11px;
+    height: 11px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: var(--verde-activo);
+}
+
+.pie-pagina {
+    color: var(--texto-secundario);
+}
+
+/* Breakpoint de Bootstrap xl: computadores medianos */
+@media (max-width: 1199.98px) {
+    .buscador {
+        width: 190px;
+    }
+
+    .zona-logo,
+    .acciones-usuario {
+        min-width: 190px;
+    }
+}
+
+/* Breakpoint de Bootstrap lg: tablet horizontal */
+@media (max-width: 991.98px) {
+    .zona-logo,
+    .acciones-usuario {
+        min-width: auto;
+    }
+
+    .navegacion a {
+        min-width: 60px;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .contenido {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+/* Breakpoint de Bootstrap md: tablet y celular grande */
+@media (max-width: 767.98px) {
+    .contenido {
+        padding-top: 16px;
+    }
+
+    .centro {
+        max-width: 650px;
+    }
+}
+
+/* Breakpoint de Bootstrap sm: celular de 375 px */
+@media (max-width: 575.98px) {
+    .contenido {
+        padding: 12px 8px 5px;
+    }
+
+    .historia img {
+        height: 118px;
+    }
+
+    .historia p,
+    .opciones-publicar button,
+    .botones-publicacion button {
+        font-size: 13px;
+    }
+
+    .card-body {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+}

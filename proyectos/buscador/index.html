@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de personajes | Rick and Morty</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="contenedor">
+        <header>
+            <p class="etiqueta">RICK AND MORTY</p>
+            <h1>Buscador de personajes</h1>
+            <p>Descubre quién vive al otro lado del portal.</p>
+        </header>
+
+        <section class="panel" aria-labelledby="titulo-busqueda">
+            <h2 id="titulo-busqueda">¿A quién buscas?</h2>
+            <form id="formulario">
+                <label for="busqueda">Nombre o ID del personaje</label>
+                <div class="fila-busqueda">
+                    <input id="busqueda" type="text" placeholder="Ejemplo: Rick, Morty o 1" maxlength="80" autocomplete="off">
+                    <button id="boton-buscar" type="submit">Buscar</button>
+                </div>
+            </form>
+            <div class="acciones">
+                <button id="boton-aleatorio" class="secundario" type="button">Personaje aleatorio</button>
+                <button id="boton-limpiar" class="secundario" type="button">Limpiar</button>
+            </div>
+        </section>
+
+        <section class="seccion-resultados" aria-labelledby="titulo-resultados" aria-busy="false">
+            <div class="cabecera-resultados">
+                <h2 id="titulo-resultados">Resultados</h2>
+                <p id="resumen" aria-live="polite"></p>
+            </div>
+            <div id="estado-inicial" class="estado">
+                <span class="simbolo" aria-hidden="true">⌕</span>
+                <h3>Tu búsqueda comienza aquí</h3>
+                <p>Escribe un nombre o un ID y presiona Enter o Buscar.</p>
+            </div>
+            <p id="mensaje-carga" class="estado oculto" role="status">Consultando personajes…</p>
+            <p id="mensaje-error" class="error oculto" role="alert"></p>
+            <div id="resultados" class="resultados"></div>
+            <nav id="paginacion" class="paginacion oculto" aria-label="Páginas de resultados">
+                <button id="boton-anterior" class="secundario" type="button">Anterior</button>
+                <span id="numero-pagina"></span>
+                <button id="boton-siguiente" class="secundario" type="button">Siguiente</button>
+            </nav>
+        </section>
+        <footer>
+            <p>David Andrés Bustamante Mesa · Proyecto académico</p>
+            <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer">Datos e imágenes: The Rick and Morty API</a>
+        </footer>
+    </main>
+</body>
+</html>
