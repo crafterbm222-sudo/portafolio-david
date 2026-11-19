@@ -392,21 +392,61 @@ nav a:hover {
 .proyectos {
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:28px
+    gap:22px
 }
 
 .tarjeta-proyecto {
     border:1px solid var(--borde);
     border-radius:16px;
     overflow:hidden;
-    background:white;
+    background:#edf3ff;
+    --acento:#254dc2;
+    border-top:4px solid var(--acento);
     display:flex;
     flex-direction:column
 }
 
+.tarjeta-proyecto:nth-child(2) {
+    background:#eef8f4;
+    --acento:#176a56;
+    border-color:#c5e5d9;
+    border-top-color:var(--acento)
+}
+
+.tarjeta-proyecto:nth-child(3) {
+    background:#fff6e6;
+    --acento:#88520b;
+    border-color:#f0d9b4;
+    border-top-color:var(--acento)
+}
+
+.tarjeta-proyecto:nth-child(4) {
+    background:#f5efff;
+    --acento:#6742a6;
+    border-color:#ddcbed;
+    border-top-color:var(--acento)
+}
+
+.tarjeta-proyecto .boton {
+    background:var(--acento);
+    border-color:var(--acento);
+    padding:9px 15px;
+    font-size:14px
+}
+
+.tarjeta-proyecto .boton.secundario {
+    background:transparent;
+    color:var(--acento)
+}
+
+.tarjeta-proyecto h3 {
+    font-size:22px;
+    margin-bottom:12px
+}
+
 .vista-proyecto {
     display:block;
-    height:260px;
+    height:180px;
     overflow:hidden;
     background:#e9eef8;
     border-bottom:1px solid var(--borde)
@@ -425,7 +465,7 @@ nav a:hover {
 }
 
 .detalle {
-    padding:28px;
+    padding:20px;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
@@ -437,22 +477,23 @@ nav a:hover {
 }
 
 .detalle>p {
-    font-size:15px
+    font-size:14px;
+    margin-bottom:16px
 }
 
 .detalle .tags {
-    font-size:11px;
+    font-size:12px;
     letter-spacing:.08em;
-    color:var(--azul);
+    color:var(--acento);
     font-weight:bold;
     margin-bottom:12px
 }
 
 .aprendizaje {
-    padding-top:16px;
+    padding-top:12px;
     border-top:1px solid var(--borde);
     width:100%;
-    margin-bottom:24px
+    margin-bottom:18px
 }
 
 .esquema-personajes {
@@ -759,11 +800,11 @@ h2 {
 }
 
 .vista-proyecto {
-    height:235px
+    height:160px
 }
 
 .detalle {
-    padding:24px
+    padding:20px
 }
 
 .pie {

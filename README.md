@@ -13,7 +13,7 @@ Descargar y extraer los archivos, y abrir `index.html` en el navegador. No neces
 
 Incluye presentación, sobre mí, habilidades, proyectos y contacto. Las tarjetas tienen capturas de mis trabajos y enlaces a las demos de Facebook, ToDoList, catálogo, juego de reacción y buscador de personajes. Las consultas a las API necesitan Internet.
 
-El formulario envía los mensajes al servidor de Vercel y los guarda en MongoDB Atlas. Solo confirma cuando el servidor responde correctamente. El enlace de correo sigue disponible como alternativa. Los datos de ToDoList se guardan solamente en el navegador: usar cuentas de prueba.
+El formulario envía los mensajes al servidor de Vercel y los guarda en MongoDB Atlas. El servidor también solicita un aviso a `crafterbm222@gmail.com` mediante FormSubmit. Ese destinatario debe activar el formulario desde el enlace recibido por correo. Si el aviso no se acepta, el contacto se conserva en MongoDB y la página indica que el correo está pendiente. El enlace de correo directo sigue disponible como alternativa. Los datos de ToDoList se guardan solamente en el navegador: usar cuentas de prueba.
 
 El servidor está en `servidor/`. Su configuración y las instrucciones para consultar los mensajes están en [servidor/README.md](servidor/README.md). La conexión privada está guardada en Vercel; no está en este repositorio. Publicar solamente con GitHub Pages no ejecuta el servidor.
 

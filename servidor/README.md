@@ -47,7 +47,15 @@ La base `portafolio` contiene la colección `contactos`. Cada documento tiene `_
 
 `limites_contacto` guarda contadores temporales con una versión hash de la dirección del visitante y un bloque de diez minutos. El índice TTL elimina esos contadores vencidos automáticamente. Es una protección básica contra repeticiones, no un sistema completo contra spam.
 
-No hay bandeja pública, aviso por correo ni panel de administración. Para responder, consultar el correo indicado en el documento de Atlas y escribir desde tu cuenta.
+No hay bandeja pública ni panel de administración. Para responder, consultar el correo indicado en el documento de Atlas o responder al aviso recibido.
+
+## Avisos al correo personal
+
+`correo.js` solicita un aviso a FormSubmit con el nombre, correo y mensaje del visitante. El destino está en `CONTACT_EMAIL`, configurado como `crafterbm222@gmail.com`; el visitante no puede cambiarlo. No se requiere añadir una contraseña de Gmail al servidor.
+
+El propietario debe buscar el primer correo de FormSubmit en su Gmail y pulsar **Activate Form**. Puede localizarlo con `in:anywhere FormSubmit`. Sin activar el destinatario, los avisos quedan pendientes. La activación y la entrega en la bandeja no se consideran comprobadas solo porque el servicio diga que solicitó el correo.
+
+El campo `avisoCorreo` de MongoDB registra `aceptado` o `pendiente`. Si falla el aviso, se mantiene el contacto y se informa al visitante sin pedir que lo vuelva a enviar. No hay reintento automático de pendientes. Referencia: https://formsubmit.co/
 
 ## Probar el código en el computador (opcional)
 

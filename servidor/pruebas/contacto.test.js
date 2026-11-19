@@ -1,6 +1,9 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { validarContacto } = require('../validacion');
+const correo = require('../correo');
+let estadoCorreo = 'aceptado';
+correo.enviarAviso = async function () { return estadoCorreo; };
 
 // Almacenamiento de prueba: verifica el comportamiento de la API, no una conexión real.
 const documentos = [];
@@ -13,7 +16,7 @@ base.obtenerBaseDatos = async function () {
         if (nombre === 'limites_contacto') return {
             async findOneAndUpdate() { return { intentos: ++intentos }; }
         };
-        return { async insertOne(documento) {
+        return { async updateOne() {}, async insertOne(documento) {
             documentos.push(documento);
             return { insertedId: 'identificador-de-prueba' };
         } };
@@ -74,7 +77,8 @@ test('validación y recorrido de contacto', async function (t) {
             const res = await enviar({ body: { ...datos, administrador: true } });
             assert.equal(res.codigo, 201);
             assert.equal(res.cuerpo.ok, true);
-            assert.deepEqual(Object.keys(documentos[0]).sort(), ['correo', 'fecha', 'mensaje', 'nombre']);
+            assert.deepEqual(Object.keys(documentos[0]).sort(), ['avisoCorreo', 'correo', 'fecha', 'mensaje', 'nombre']);
+            assert.equal(res.cuerpo.avisoCorreo, 'aceptado');
             assert.ok(documentos[0].fecha instanceof Date);
         });
         await t.test('limita mensajes y oculta los detalles de errores internos', async function () {
@@ -85,6 +89,16 @@ test('validación y recorrido de contacto', async function (t) {
             const res = await enviar();
             assert.equal(res.codigo, 503);
             assert.doesNotMatch(JSON.stringify(res.cuerpo), /Error interno/);
+        });
+        await t.test('si el correo falla, confirma el guardado y marca el aviso pendiente', async function () {
+            fallar = false;
+            intentos = 0;
+            estadoCorreo = 'pendiente';
+            const res = await enviar();
+            assert.equal(res.codigo, 201);
+            assert.equal(res.cuerpo.ok, true);
+            assert.equal(res.cuerpo.avisoCorreo, 'pendiente');
+            assert.equal(documentos.length, 2);
         });
     } finally {
         if (originalUri === undefined) delete process.env.MONGODB_URI;

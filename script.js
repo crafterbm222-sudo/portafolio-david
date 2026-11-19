@@ -20,7 +20,7 @@ const urlContacto = window.CONTACTO_URL || '';
 if (urlContacto) {
     botonEnviar.textContent = 'Enviar mensaje';
     formulario.querySelector('.ayuda').textContent =
-        'Tu nombre, correo y mensaje se guardarán para poder responderte. No se publicarán en la página.';
+        'Tu mensaje se guardará y se enviará un aviso a mi correo personal. Tus datos no se publicarán en la página.';
 }
 
 formulario.addEventListener('submit', async function (evento) {
@@ -54,7 +54,9 @@ formulario.addEventListener('submit', async function (evento) {
                 throw new Error(datos.error || 'No se pudo guardar el mensaje.');
             }
             respuesta.dataset.estado = 'correcto';
-            respuesta.textContent = 'Tu mensaje quedó guardado. ¡Gracias por escribirme!';
+            respuesta.textContent = datos.avisoCorreo === 'pendiente'
+                ? 'Tu mensaje quedó guardado. El aviso por correo está pendiente; no necesitas enviarlo otra vez.'
+                : 'Tu mensaje quedó guardado. ¡Gracias por escribirme!';
             formulario.reset();
         } catch (error) {
             respuesta.dataset.estado = 'error';
@@ -71,7 +73,7 @@ formulario.addEventListener('submit', async function (evento) {
     }
     const asunto = 'Contacto desde el portafolio: ' + nombre;
     const cuerpo = 'Nombre: ' + nombre + '\nCorreo: ' + correo + '\n\n' + mensaje;
-    const destino = 'mailto:david.bustamante251@tau.usbmed.edu.co?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+    const destino = 'mailto:crafterbm222@gmail.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
     respuesta.textContent = 'El mensaje está preparado. Revisa tu aplicación de correo y pulsa Enviar allí. Si no se abre, usa el enlace de correo de esta sección.';
     respuesta.dataset.estado = '';
     window.location.href = destino;
