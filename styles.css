@@ -7,6 +7,19 @@
     --borde:#dfe5f0
 }
 
+.boton:disabled {
+    opacity: .65;
+    cursor: wait;
+}
+
+#respuesta[data-estado="error"] {
+    color: #a52323;
+}
+
+#respuesta[data-estado="correcto"] {
+    color: #17623b;
+}
+
 
 * {
     box-sizing:border-box

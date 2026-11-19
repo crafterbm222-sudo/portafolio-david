@@ -1,0 +1,12 @@
+{
+  "name": "contacto-portafolio-david",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Recibe mensajes del portafolio y los guarda en MongoDB",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env local.js",
+    "test": "node --test pruebas/*.test.js"
+  },
+  "dependencies": { "mongodb": "7.9.0" }
+}

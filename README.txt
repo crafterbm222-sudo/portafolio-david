@@ -27,17 +27,21 @@ dependencias. El código original de React se incluye en fuentes-react. Para edi
 esos proyectos con Vite, entrar a su carpeta, ejecutar npm ci y npm run dev.
 
 CONTACTO
-El formulario valida nombre, correo y mensaje. Prepara un enlace mailto con el
-asunto y texto codificados para que el visitante revise y envíe desde su programa
-de correo. No tiene servidor de correo ni muestra un aviso falso de envío.
-Necesita una aplicación de correo configurada. El enlace directo también permite
-copiar la dirección si el dispositivo no tiene un cliente de correo.
-No se guarda información del formulario ni se envía a servicios externos.
+El formulario envía nombre, correo, mensaje y fecha a MongoDB Atlas mediante una
+función de Node.js publicada en Vercel. El navegador solo conoce la URL pública de
+la API. La contraseña está guardada como secreto del servidor, fuera de GitHub.
+Solo muestra confirmación cuando el guardado se completa. Si hay un error,
+conserva los campos para reintentar. No envía notificaciones por correo.
+Para leer los mensajes: Atlas > Portafolio David > portafolio-david >
+Browse Collections > portafolio > contactos.
+El enlace de correo de la página sigue disponible como alternativa.
+La carpeta servidor contiene el código y una guía para entender la configuración.
+Se verificó un envío real y su lectura en MongoDB Atlas.
 
 ARCHIVOS
 index.html: contenido del portafolio.
 styles.css: colores, distribución, estados y adaptación a distintos tamaños.
-script.js: menú móvil y preparación del correo.
+script.js: menú móvil, validación y envío del formulario.
 assets/: capturas locales de los proyectos.
 proyectos/: demos que abren los botones del portafolio.
 fuentes-react/: código fuente original del catálogo y juego.

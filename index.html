@@ -6,6 +6,7 @@
   <meta name="description" content="Portafolio académico de David Andrés Bustamante Mesa. Proyectos y aprendizajes en desarrollo web.">
   <title>David Bustamante · Desarrollo web</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -68,12 +69,10 @@
     </section>
     <section id="contacto" class="seccion contacto">
       <div class="contenedor contacto-contenido"><div><p class="etiqueta">SIGAMOS EN CONTACTO</p><h2>Una conversación puede<br>ser el próximo paso.</h2><p>Puedes escribirme sobre mis proyectos o mi proceso de aprendizaje.</p><a class="correo" href="mailto:david.bustamante251@tau.usbmed.edu.co">david.bustamante251@tau.usbmed.edu.co</a><p><a class="enlace-texto" href="https://github.com/crafterbm222-sudo" target="_blank" rel="noopener">Mi perfil en GitHub</a></p></div>
-        <form id="formulario" class="formulario"><h3>Escríbeme</h3><p class="ayuda">Prepararé el mensaje en tu aplicación de correo para que lo revises y lo envíes.</p><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" autocomplete="name" required maxlength="80" placeholder="¿Cómo te llamas?"><label for="email">Tu correo</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="150" placeholder="nombre@correo.com"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" required maxlength="2000" rows="4" placeholder="Cuéntame…"></textarea><button class="boton" type="submit">Preparar correo</button><p id="respuesta" role="status" aria-live="polite"></p><noscript><p>También puedes usar el enlace de correo que aparece en esta sección.</p></noscript></form>
+        <form id="formulario" class="formulario"><div hidden aria-hidden="true"><label for="sitio">Sitio web</label><input id="sitio" name="sitio" type="text" tabindex="-1" autocomplete="off"></div><h3>Escríbeme</h3><p class="ayuda">Prepararé el mensaje en tu aplicación de correo para que lo revises y lo envíes.</p><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" autocomplete="name" required maxlength="80" placeholder="¿Cómo te llamas?"><label for="email">Tu correo</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="150" placeholder="nombre@correo.com"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" required maxlength="2000" rows="4" placeholder="Cuéntame…"></textarea><button class="boton" type="submit">Preparar correo</button><p id="respuesta" role="status" aria-live="polite"></p><noscript><p>También puedes usar el enlace de correo que aparece en esta sección.</p></noscript></form>
       </div>
     </section>
   </main>
   <footer><div class="contenedor pie"><a class="marca" href="#inicio">DB. / David Bustamante</a><p>© 2026 · Aprendiendo y construyendo para la web.</p><a href="#inicio">Volver al inicio</a></div></footer>
 </body>
 </html>
-
-
